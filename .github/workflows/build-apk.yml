@@ -25,7 +25,14 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npx cap init "TasbeehApp" "com.tasbeeh.app" --web-dir www --yes
+
+      - name: Create Capacitor Config
+        run: |
+          echo '{
+            "appId": "com.tasbeeh.app",
+            "appName": "TasbeehApp",
+            "webDir": "www"
+          }' > capacitor.config.json
 
       - name: Prepare web assets
         run: |
@@ -47,4 +54,5 @@ jobs:
         with:
           name: app-debug
           path: android/app/build/outputs/apk/debug/app-debug.apk
+          
           
